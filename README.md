@@ -73,11 +73,7 @@ developed in section 5. You should submit both the server and client.
  
 ![alt text](https://github.com/RazElbaz/OS_Ex4/blob/main/Pictures%20from%20the%20run/stackempty.png)
   
-  7. ```Test```
- 
-![alt text](https://github.com/RazElbaz/OS_Ex4/blob/main/Pictures%20from%20the%20run/Test.png)
-  
-  8. ```Processes```
+  7.  ```Processes```
  
 ![alt text](https://github.com/RazElbaz/OS_Ex4/blob/main/Pictures%20from%20the%20run/multithread.png)
   
