@@ -1,6 +1,10 @@
 .PHONY: all clean
 
-all: clean server client
+all: clean server client test
+test: TestCounter.o Test.o
+	gcc test.o -o test
+test.o: TestCounter.cpp Test.cpp
+	gcc -c test.cpp
 server: Stack.hpp server.o
 	gcc server.o -o server
 client: client.o Stack.hpp
