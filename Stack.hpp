@@ -43,7 +43,7 @@ void POP_stack(stack_pointer stack){
     lock.l_type = F_WRLCK;
     fcntl(fd, F_SETLKW, &lock);
     if (stack->data[stack->size - 1] == NULL) {
-        perror("The stack is empty");
+        perror("ERROR: Stack is empty, thus cannot pop!");
     }
     stack->size-=1;
     int counter_pop=0;
@@ -60,7 +60,7 @@ void* TOP_stack(stack_pointer stack, int new_fd){
     char buffer[1024] = {0}; //Initialize the array with 0 and not with "junk"
 
     if (stack->data[stack->size - 1] == NULL) {
-        perror("The stack is empty");
+        perror("ERROR: Stack is empty, thus cannot top!");
     }
     strcat(buffer, "OUTPUT: ");// The strcat() function concatenates string2 to string1 and ends the resulting string with the null character
     int i = 8;
