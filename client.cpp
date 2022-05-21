@@ -99,9 +99,8 @@ int main(int argc, char *argv[])
             }
             printf("\n");
         }
-        else {  if(send(sockfd, buffer, strlen(buffer) + 1, 0) == -1){
-                perror("send");
-            }}
+        else {  if(send(sockfd, buffer, strlen(buffer), 0) == -1){
+                perror("send");}}
         bzero(buffer, MAXDATASIZE);
     }
     close(sockfd);
