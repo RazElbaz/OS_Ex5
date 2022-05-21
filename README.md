@@ -8,12 +8,11 @@ process shared memory and locking routines
 
 ## Tasks:
 1. Do you still have the stack from ex4? the stack should support:
-
-a. PUSH <text>\n
+  a. PUSH <text>\n
   
-b. POP\n
+  b. POP\n
   
-c. TOP\n
+  c. TOP\n
   
 2. The expected behaviour
 a. PUSH will push <text> into the stack.
