@@ -63,7 +63,7 @@ void* TOP_stack(stack_pointer stack, int new_fd){
         perror("ERROR: Stack is empty, thus cannot top!");
     }
     strcat(buffer, "OUTPUT: ");// The strcat() function concatenates string2 to string1 and ends the resulting string with the null character
-    int i = 8;
+    int i = 8;//length of the string "OUTPUT: "
     while (stack->data[lastWord] != endWord){ lastWord-=1;} //A loop that will count the beginning of the last buffer
     while(stack->data[lastWord + 1] != endWord){ buffer[i++]=stack->data[(lastWord)++ + 1];} //Add the last input to the BUFFER
     if (send(new_fd, buffer, strlen(buffer), 0) == -1)    //print ths top of the stack by sending
