@@ -15,8 +15,7 @@ c. TOP\n
 a. PUSH will push <text> into the stack.
 b. POP will pop text from the stack
 c. TOP will display (output) the stack top.
-d. Your output should begin with OUTPUT: prefix. These lines are the only lines
-that will be checked by us. (Your only command that generate output is the TOP
+d. Your output should begin with OUTPUT: prefix. These lines are the only lines that will be checked by us. (Your only command that generate output is the TOP
 command)
 e. For the sake of clarity and simplicity. You may assume that all commands are
 only in uppercase. Text includes characters and can be capped at 1024 bytes. You
