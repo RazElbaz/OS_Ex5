@@ -82,34 +82,26 @@ int main(int argc, char *argv[])
             while ((ch = getchar()) != '\n' && ch != EOF)
                 continue;  // discard unwanted characters
         }
-        if (strncmp(buffer, "EXIT", 4) == 0)
-        {
+        if (strncmp(buffer, "EXIT", 4) == 0){
             break;
         }
-
-        if (!strncmp(buffer, "TOP", 3))
-        {
-            if (send(sockfd, buffer, strlen(buffer), 0) == -1)
-            {
+        else if (!strncmp(buffer, "TOP", 3)){
+            if (send(sockfd, buffer, strlen(buffer), 0) == -1){
                 perror("send");
             }
             bzero(buffer, MAXDATASIZE);
-            if (recv(sockfd, buffer, MAXDATASIZE - 1, 0) == -1)
-            {
+            if (recv(sockfd, buffer, MAXDATASIZE - 1, 0) == -1){
                 close(sockfd);
                 return 0;
             }
-            for (int i = 0; i < MAXDATASIZE; i++)
-            {
+            for (int i = 0; i < MAXDATASIZE; i++){
                 printf("%c", buffer[i]);
             }
             printf("\n");
         }
-        else {
-            if(send(sockfd, buffer, strlen(buffer) + 1, 0) == -1){
+        else {  if(send(sockfd, buffer, strlen(buffer) + 1, 0) == -1){
                 perror("send");
-            }
-        }
+            }}
         bzero(buffer, MAXDATASIZE);
     }
     close(sockfd);

@@ -12,7 +12,6 @@
 #include <signal.h>
 #include <sys/mman.h>
 #include <fcntl.h>
-#include <pthread.h>
 #define PORT "3490"
 #define BACKLOG 10
 #define MAXDATASIZE 1024
@@ -58,7 +57,6 @@ void* TOP_stack(stack_pointer stack, int new_fd){
     fcntl(fd, F_SETLKW, &lock);
     int lastWord= stack->size - 1;// removing '\0'
     char buffer[1024] = {0}; //Initialize the array with 0 and not with "junk"
-
     if (stack->data[stack->size - 1] == NULL) {
         perror("ERROR: Stack is empty, thus cannot top!");
     }
