@@ -29,18 +29,22 @@ typedef struct Stack
     char data[MAXDATASIZE];
 }*stack_pointer;
 
-
-void PUSH_stack(stack_pointer stack, char *str){
+void LOCK(){
     lock.l_type = F_WRLCK;
     fcntl(fd, F_SETLKW, &lock);
-    for (int i = 0 ; i < strlen(str); i++){ stack->data[(stack->size)++ + 1] = str[i];}
-    stack->data[(stack->size)++ + 1] = endWord; //adding '\0' for mark input termination
+}
+void UNLOCK(){
     lock.l_type = F_UNLCK;
     fcntl (fd, F_SETLKW, &lock);
 }
+void PUSH_stack(stack_pointer stack, char *str){
+    LOCK();
+    for (int i = 0 ; i < strlen(str); i++){ stack->data[(stack->size)++ + 1] = str[i];}
+    stack->data[(stack->size)++ + 1] = endWord; //adding '\0' for mark input termination
+    UNLOCK();
+}
 void POP_stack(stack_pointer stack){
-    lock.l_type = F_WRLCK;
-    fcntl(fd, F_SETLKW, &lock);
+    LOCK();
     if (stack->data[stack->size - 1] == NULL) {
         perror("ERROR: Stack is empty, thus cannot pop!");
     }
@@ -48,13 +52,11 @@ void POP_stack(stack_pointer stack){
     int counter_pop=0;
     while (stack->data[stack->size - counter_pop] != endWord){counter_pop++;} //count how many chars we need to delete
     stack->size-=counter_pop;
-    lock.l_type = F_UNLCK;
-    fcntl (fd, F_SETLKW, &lock);
+    UNLOCK();
 }
 
 void* TOP_stack(stack_pointer stack, int new_fd){
-    lock.l_type = F_WRLCK;
-    fcntl(fd, F_SETLKW, &lock);
+    LOCK();
     int lastWord= stack->size - 1;// removing '\0'
     char buffer[1024] = {0}; //Initialize the array with 0 and not with "junk"
     if (stack->data[stack->size - 1] == NULL) {
@@ -68,8 +70,7 @@ void* TOP_stack(stack_pointer stack, int new_fd){
     {
         perror("send");
     }
-    lock.l_type = F_UNLCK;
-    fcntl (fd, F_SETLKW, &lock);
+    UNLOCK();
     return NULL;
 }
 

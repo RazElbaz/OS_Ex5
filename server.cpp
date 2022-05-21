@@ -167,7 +167,7 @@ int main(void)
             exit(0);
         }
         close(new_fd); // parent doesn't need this
-        
+
     }
     munmap(stackPointer, sizeof(Stack));
     return 0;
