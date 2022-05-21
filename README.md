@@ -16,6 +16,7 @@ process shared memory and locking routines
     c. TOP\n
   
 2. The expected behaviour
+    
 a. PUSH will push <text> into the stack.
 b. POP will pop text from the stack
 c. TOP will display (output) the stack top.
