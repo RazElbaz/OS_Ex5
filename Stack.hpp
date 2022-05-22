@@ -60,7 +60,13 @@ void* TOP_stack(stack_pointer stack, int new_fd){
     int lastWord= stack->size - 1;// removing '\0'
     char buffer[1024] = {0}; //Initialize the array with 0 and not with "junk"
     if (stack->data[stack->size - 1] == NULL) {
-        perror("ERROR: Stack is empty, thus cannot top!");
+        char* error="ERROR: Stack is empty, thus cannot top!";//for the client
+        if (send(new_fd, error, strlen(error), 0) == -1)    //print ths top of the stack by sending
+        {
+            perror("send");
+        }
+        perror("ERROR: Stack is empty, thus cannot top!");//for the server
+        return NULL;
     }
     strcat(buffer, "OUTPUT: ");// The strcat() function concatenates string2 to string1 and ends the resulting string with the null character
     int i = 8;//length of the string "OUTPUT: "
